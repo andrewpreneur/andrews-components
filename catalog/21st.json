@@ -1,0 +1,23 @@
+[
+ {
+  "id": "21st/preetsuthar17/animated-counter",
+  "source": "21st",
+  "name": "animated counter",
+  "category": "Data",
+  "description": "Number that animates between values (spring digits). Good for stats and counters.",
+  "tags": [
+   "counter",
+   "number",
+   "stat",
+   "data"
+  ],
+  "path": "src/components/21st/animated-counter/animated-counter.tsx",
+  "files": [
+   "src/components/21st/animated-counter/animated-counter.tsx"
+  ],
+  "page": "https://21st.dev/preetsuthar17/animated-counter",
+  "install": "npx shadcn@latest add \"https://21st.dev/r/preetsuthar17/animated-counter?api_key=$API_KEY_21ST\"",
+  "clock": true,
+  "saved": "2026-11-13"
+ }
+]
