@@ -17,7 +17,7 @@ npm run find -- captions                      # search every component we have
 npm run still -- showcase 9:16 1 4 8          # QA stills → out/stills
 npm run shoot -- showcase 16:9 out/demo.mp4   # render MP4 (Playwright + ffmpeg)
 ```
-21st.dev MCP: set `API_KEY_21ST` in your shell (never commit it). `.mcp.json` already has the `21st` and `shadcn` servers.
+21st.dev MCP: works automatically in Andrew's cloud sessions (key saved on the environment). Locally, set `API_KEY_21ST` (never commit it). `.mcp.json` has the `21st` and `shadcn` servers.
 
 ## Read next
 `docs/video-rules.md` (rules) · `docs/render-pipeline.md` · `docs/gsap.md` · `docs/kokonut.md` · `docs/21st.md` · `CLAUDE.md` (agents)

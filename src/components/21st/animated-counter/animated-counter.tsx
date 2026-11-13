@@ -1,3 +1,6 @@
+// Component from 21st.dev: Animated Counter (Default) by preetsuthar17. https://21st.dev/preetsuthar17/animated-counter  saved 2026-11-13
+"use client" 
+
 import * as React from "react"
  
 import { MotionValue, motion, useSpring, useTransform } from "motion/react";

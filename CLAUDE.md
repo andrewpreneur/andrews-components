@@ -18,7 +18,7 @@ It pairs with `andrewpreneur/content-management` (the content engine), which mak
 - Use live libraries as they are (GSAP, Kokonut, 21st). Don't rebuild a component that exists; install it.
 - Every new reusable piece goes in `src/video/components/` with a `catalog/ours.json` entry. Keep the catalog true.
 - Videos must render deterministically (`useTime`) or be flagged `clock: true`.
-- Secrets: the 21st key lives only in the env var `API_KEY_21ST`. Never write it into files, commits, or logs.
+- Secrets: the 21st key is a network secret on the cloud environment (proxy-injected) or the local env var `API_KEY_21ST`. Never write it into files, commits, or logs.
 - Before pushing: `npm run typecheck` and `npx vite build` pass, and a still of anything you changed looks right.
 
 # Kokonut UI
