@@ -220,9 +220,10 @@ export function TiltedGridHero({
 
   return (
     <div
-      ref={ref}
       className={cn("relative overflow-hidden", className)}
       {...props}
+      // After the spread: the rest props can carry an empty `ref` that would otherwise replace ours.
+      ref={ref}
       style={{ containerType: "size", ...props.style }}
     >
       <style>{css}</style>
