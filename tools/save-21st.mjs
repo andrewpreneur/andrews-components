@@ -9,18 +9,30 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 const a = process.argv.slice(2); const opt = (k, d = null) => { const i = a.indexOf(k); if (i < 0) return d; const v = a[i + 1]; a.splice(i, 2); return v }
 const desc = opt('--desc', ''), tags = (opt('--tags', '') || '').split(',').filter(Boolean), category = opt('--category', 'Saved')
 const id = Number(a[0]); if (!id) { console.error('usage: npm run save:21st -- <demoId> [--desc ..] [--tags a,b] [--category ..]'); process.exit(1) }
+const KEY = process.env.API_KEY_21ST || process.env.TWENTYFIRSTDOTDEV_API_KEY || ''  // either env var name works
 // curl, not fetch: curl honours HTTPS_PROXY, so the cloud proxy can inject the saved key.
 const payload = JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'get_component', arguments: { id } } })
 const out = execSync(`curl -s -X POST https://21st.dev/api/mcp -H "x-api-key: $API_KEY_21ST" -H 'Content-Type: application/json' -H 'Accept: application/json, text/event-stream' --data-binary @-`,
-  { input: payload, env: { ...process.env, API_KEY_21ST: process.env.API_KEY_21ST || 'proxy-injected' }, maxBuffer: 64 << 20 }).toString()
-const body = JSON.parse(out); const c = body?.result?.structuredContent?.component
+  { input: payload, env: { ...process.env, API_KEY_21ST: KEY || 'proxy-injected' }, maxBuffer: 64 << 20 }).toString()
+const body = JSON.parse(out.split('\n').map(l => l.replace(/^data: /, '')).find(l => l.startsWith('{')) || out); const c = body?.result?.structuredContent?.component
 if (!c?.componentCode) { console.error('21st did not return code:', JSON.stringify(body).slice(0, 400)); process.exit(1) }
 const ref = (c.installCommand.match(/21st\.dev\/r\/([^?"]+)/) || [])[1] || `id-${id}`, slug = ref.split('/').pop(), dir = `src/components/21st/${slug}`
 mkdirSync(dir, { recursive: true })
 const header = (kind) => `// ${kind} from 21st.dev: ${c.name} (${c.demoName}) by ${ref.split('/')[0]}. https://21st.dev/${ref}  saved ${new Date().toISOString().slice(0, 10)}\n`
 writeFileSync(`${dir}/${slug}.tsx`, header('Component') + c.componentCode.replace(/\r\n/g, '\n'))
+// Multi-file components: get_component returns only the main file. With a real key in the env, pull the helper files
+// (<slug>-utils/*) from the registry item too. The key is only sent in the request, never written anywhere.
+const local = (code) => code.replace(/\r\n/g, '\n').replace(new RegExp(`@/components/ui/${slug}-utils/`, 'g'), `./${slug}-utils/`).replace(new RegExp(`@/components/ui/${slug}(?=['"])`, 'g'), `./${slug}`)
+let extraDeps = []
+if (KEY) try {
+  const item = JSON.parse(execSync(`curl -s "https://21st.dev/r/${ref}?api_key=$K"`, { env: { ...process.env, K: KEY }, maxBuffer: 64 << 20 }).toString())
+  extraDeps = item.dependencies || []
+  for (const f of item.files || []) { const rel = f.path.split(`/components/ui/`)[1]; if (!rel || !rel.startsWith(`${slug}-utils/`)) continue
+    mkdirSync(`${dir}/${rel}`.replace(/\/[^/]+$/, ""), { recursive: true }); writeFileSync(`${dir}/${rel}`, local(f.content).replace(/(['"])\.\/[a-z0-9-]+-utils\//g, '$1./')); console.log(`  + ${dir}/${rel}`) }
+} catch (e) { console.warn('could not fetch helper files:', e.message) }
+writeFileSync(`${dir}/${slug}.tsx`, header('Component') + local(c.componentCode))
 if (c.demoCode) writeFileSync(`${dir}/${slug}.demo.tsx`, header('Demo') + c.demoCode.replace(/\r\n/g, '\n').replace(new RegExp(`@/components/ui/${slug}`, 'g'), `./${slug}`))
-const deps = Object.keys(c.registryDependencies?.npmDependencies || {}); if (deps.length) execSync(`npm install --silent ${deps.join(' ')}`, { stdio: 'inherit' })
+const deps = [...new Set([...Object.keys(c.registryDependencies?.npmDependencies || {}), ...extraDeps])]; if (deps.length) execSync(`npm install --silent ${deps.join(' ')}`, { stdio: 'inherit' })
 const reg = c.registryDependencies?.filesWithRegistry || {}; if (Object.keys(reg).length) console.warn('Also needs registry files:', Object.keys(reg).join(', '), '(install with npx shadcn@latest add <name>)')
 const cat = JSON.parse(readFileSync('catalog/21st.json', 'utf8')).filter(x => x.id !== `21st/${ref}`)
 cat.push({ id: `21st/${ref}`, source: '21st', demoId: id, name: c.name, category, description: desc || c.description, tags, path: `${dir}/${slug}.tsx`, demo: c.demoCode ? `${dir}/${slug}.demo.tsx` : null, page: `https://21st.dev/${ref}`, preview: c.previewUrl, clock: true, saved: new Date().toISOString().slice(0, 10) })

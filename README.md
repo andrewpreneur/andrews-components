@@ -7,6 +7,7 @@ Pre-made React components, animation tools and rules for making our videos faste
 | **Ours** (`src/video`) | Measured motion curves + video components (headlines, cards, stamps, typing, cursor, counters, captions, end card) | Deterministic, frame-accurate |
 | **GSAP 3.15** (all plugins) | Animation framework: timelines, SplitText, DrawSVG, MorphSVG, MotionPath, Flip | Paused timeline seeked per frame (`useGsapTimeline`) |
 | **Kokonut UI** (`@kokonutui`) | 126 animated React components (AI UI, buttons, cards, text, backgrounds) | `npx shadcn@latest add @kokonutui/<name>`, used as is |
+| **Watermelon UI** (`@watermelon`) | 849 components, animated components and page blocks (heroes, CTAs, pricing, dashboards) | `npx shadcn@latest add @watermelon/<slug>`; source in `vendor/` |
 | **21st.dev** (MCP) | Huge component catalog + video blocks | MCP search → `npm run save:21st` |
 
 ## Quick start
@@ -20,4 +21,4 @@ npm run shoot -- showcase 16:9 out/demo.mp4   # render MP4 (Playwright + ffmpeg)
 21st.dev MCP: works automatically in Andrew's cloud sessions (key saved on the environment). Locally, set `API_KEY_21ST` (never commit it). `.mcp.json` has the `21st` and `shadcn` servers.
 
 ## Read next
-`docs/video-rules.md` (rules) · `docs/render-pipeline.md` · `docs/gsap.md` · `docs/kokonut.md` · `docs/21st.md` · `CLAUDE.md` (agents)
+`docs/video-rules.md` (rules) · `docs/render-pipeline.md` · `docs/gsap.md` · `docs/kokonut.md` · `docs/watermelon.md` · `docs/21st.md` · `CLAUDE.md` (agents)

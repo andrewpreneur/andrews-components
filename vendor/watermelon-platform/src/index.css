@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "./styles/vendor/shadcn-tailwind.css";
+@import "@fontsource-variable/inter";
+@import "./styles/theme.css";
+
+/* Catalog content gets its utilities from styles/catalog.css. */
+@source not "./data/contents";

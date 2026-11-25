@@ -1,0 +1,41 @@
+---
+title: Switch Button
+description: Light and dark theme toggle whose sun folds into a moon while the new theme spreads from the button as a circle.
+keywords: ["dark mode", "theme toggle", "light mode", "appearance", "color scheme"]
+icon: Link
+full: false
+---
+
+
+import SwitchButtonDemo from "@/components/mdx/demos/switch-button-demo";
+
+<Preview link="switch-button">
+    <SwitchButtonDemo />
+</Preview>
+
+## Usage
+
+With no props, the button toggles the `dark` class on `<html>`, which is what Tailwind's class-based `dark:` variant reads. It does not save the choice.
+
+The new theme spreads out from the button as a circle, using the View Transitions API. In browsers without it, or with reduced motion turned on, the theme switches instantly.
+
+If a theme provider already owns the theme, pass the applied theme and a setter instead. With next-themes:
+
+```tsx
+"use client";
+
+import { useTheme } from "next-themes";
+import SwitchButton from "@/components/kokonutui/switch-button";
+
+export function ThemeSwitch() {
+  const { resolvedTheme, setTheme } = useTheme();
+
+  return (
+    <SwitchButton
+      onThemeChange={setTheme}
+      theme={resolvedTheme === "dark" ? "dark" : "light"}
+    />
+  );
+}
+```
+

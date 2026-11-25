@@ -5,20 +5,21 @@ It pairs with `andrewpreneur/content-management` (the content engine), which mak
 
 ## Start here
 - Video rules (non-negotiable): `docs/video-rules.md`.
-- Find anything: `npm run find -- <what you need>` (searches `catalog/*.json`: ours, GSAP, Kokonut, saved 21st).
-- Skills: `video-components` (entry point), `gsap-video`, `kokonut-ui`, `21st-dev` in `.claude/skills/`.
+- Find anything: `npm run find -- <what you need>` (searches `catalog/*.json`: ours, GSAP, Kokonut, Watermelon, saved 21st).
+- Skills: `video-components` (entry point), `gsap-video`, `kokonut-ui`, `watermelon-ui`, `21st-dev` in `.claude/skills/`.
 - Render: `npm run shoot -- <compId> <fmt>`; stills: `npm run still -- <compId> <fmt> t...`; gallery: `npm run dev`.
 
 ## Repo map
 - `src/video/` our deterministic video kit: `motion.ts` (measured curves), `time.tsx` (Stage, useTime, Sequence), `components/` (LetterRise, WordRise, Stamp, CardSlide, Typer, PressButton, Cursor, CountBar, Strike, Rise, Captions, EndCard), `gsap/useGsapTimeline.ts`.
-- `src/compositions/` renderable videos (registry `index.ts`). `src/components/kokonutui/`, `src/components/21st/`, `src/components/ui/` installed third-party components.
+- `src/compositions/` renderable videos (registry `index.ts`). `src/components/kokonutui/`, `src/components/21st/`, `src/components/watermelon/`, `src/components/ui/` installed third-party components.
+- `vendor/` read-only source of Kokonut UI and Watermelon UI (`npm run vendor:sync` refreshes it and `catalog/watermelon.json`). Search and read it; never import from it.
 - `catalog/` searchable index. `docs/` rules and how-tos. `tools/` shoot, still, find, kokonut-sync, save-21st.
 
 ## Rules for agents
-- Use live libraries as they are (GSAP, Kokonut, 21st). Don't rebuild a component that exists; install it.
+- Use live libraries as they are (GSAP, Kokonut, Watermelon, 21st). Don't rebuild a component that exists; install it.
 - Every new reusable piece goes in `src/video/components/` with a `catalog/ours.json` entry. Keep the catalog true.
 - Videos must render deterministically (`useTime`) or be flagged `clock: true`.
-- Secrets: the 21st key is a network secret on the cloud environment (proxy-injected) or the local env var `API_KEY_21ST`. Never write it into files, commits, or logs.
+- Secrets: the 21st key is a network secret on the cloud environment (proxy-injected) or the env var `API_KEY_21ST` / `TWENTYFIRSTDOTDEV_API_KEY`. Never write it into files, commits, or logs.
 - Before pushing: `npm run typecheck` and `npx vite build` pass, and a still of anything you changed looks right.
 
 # Kokonut UI

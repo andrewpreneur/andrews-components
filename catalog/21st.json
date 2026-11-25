@@ -18,5 +18,105 @@
   "preview": "https://cdn.21st.dev/user_2rWolCuRnJW3DRiuQ5JHrl5kj8a/animated-counter/animated-counter/preview.png?v=1",
   "clock": true,
   "saved": "2026-11-13"
+ },
+ {
+  "id": "21st/ruixen.ui/tilted-grid-hero",
+  "source": "21st",
+  "demoId": 36749,
+  "name": "Tilted Grid Hero",
+  "category": "Hero",
+  "description": "Hero with a curved, endlessly streaming row of images that bends toward the viewer and fades at the edges.",
+  "tags": [
+   "hero",
+   "gallery",
+   "marquee",
+   "photos"
+  ],
+  "path": "src/components/21st/tilted-grid-hero/tilted-grid-hero.tsx",
+  "demo": "src/components/21st/tilted-grid-hero/tilted-grid-hero.demo.tsx",
+  "page": "https://21st.dev/ruixen.ui/tilted-grid-hero",
+  "preview": "https://cdn.21st.dev/user_2y5Wd5l713ZIFYjX19aZXSyXd6b/tilted-grid-hero/default/preview.1791489943448.webp",
+  "clock": true,
+  "saved": "2026-11-25"
+ },
+ {
+  "id": "21st/thegridcn/waveform",
+  "source": "21st",
+  "demoId": 18483,
+  "name": "Waveform",
+  "category": "Media",
+  "description": "Animated audio waveform bars with glow; good for music, audio and now-playing moments.",
+  "tags": [
+   "audio",
+   "waveform",
+   "music",
+   "visualizer"
+  ],
+  "path": "src/components/21st/waveform/waveform.tsx",
+  "demo": "src/components/21st/waveform/waveform.demo.tsx",
+  "page": "https://21st.dev/thegridcn/waveform",
+  "preview": "https://cdn.21st.dev/thegridcn/waveform/default/preview.1783581670675.png",
+  "clock": true,
+  "saved": "2026-11-25"
+ },
+ {
+  "id": "21st/felipemenezes098/hero-04",
+  "source": "21st",
+  "demoId": 19074,
+  "name": "Editorial Collage Hero",
+  "category": "Hero",
+  "description": "Two-column editorial hero: serif headline, copy, CTAs and a layered photo collage.",
+  "tags": [
+   "hero",
+   "editorial",
+   "collage",
+   "photos"
+  ],
+  "path": "src/components/21st/hero-04/hero-04.tsx",
+  "demo": "src/components/21st/hero-04/hero-04.demo.tsx",
+  "page": "https://21st.dev/felipemenezes098/hero-04",
+  "preview": "https://cdn.21st.dev/user_felipemenezes098/hero-04/default/preview.1786538402894.png",
+  "clock": true,
+  "saved": "2026-11-25"
+ },
+ {
+  "id": "21st/kuratlielia/text-reveal",
+  "source": "21st",
+  "demoId": 35037,
+  "name": "Text Reveal",
+  "category": "Texts",
+  "description": "Headline that animates in word by word, each word rising out of a soft blur.",
+  "tags": [
+   "text",
+   "reveal",
+   "headline",
+   "blur"
+  ],
+  "path": "src/components/21st/text-reveal/text-reveal.tsx",
+  "demo": "src/components/21st/text-reveal/text-reveal.demo.tsx",
+  "page": "https://21st.dev/kuratlielia/text-reveal",
+  "preview": "https://cdn.21st.dev/user_registry_kuratlielia_1790903117010/text-reveal/default/preview.1790980062531.webp",
+  "clock": true,
+  "saved": "2026-11-25"
+ },
+ {
+  "id": "21st/felipemenezes098/hero-10",
+  "source": "21st",
+  "demoId": 19079,
+  "name": "Centered Hero with Image Fan",
+  "category": "Hero",
+  "description": "Centered hero with highlighted serif headline, CTAs and a fan of overlapping photos.",
+  "tags": [
+   "hero",
+   "centered",
+   "fan",
+   "photos"
+  ],
+  "path": "src/components/21st/hero-10/hero-10.tsx",
+  "demo": "src/components/21st/hero-10/hero-10.demo.tsx",
+  "page": "https://21st.dev/felipemenezes098/hero-10",
+  "preview": "https://cdn.21st.dev/felipemenezes098/hero-10/default/preview.1783679160216.png",
+  "clock": true,
+  "saved": "2026-11-25"
  }
 ]

@@ -13,4 +13,5 @@ npx shadcn@latest add @kokonutui/<name>           # install → src/components/k
 - Read any component's docs + full source as Markdown: add `.md` to its docs URL (in the catalog `docs` field).
 - In a video they run on real time → put them in a composition flagged `clock: true` (see `src/compositions/KokonutDemo.tsx`).
   Turn off cursor interaction (`interactive={false}`) and anything that waits for hover/click, or drive it with props on a timer.
-- Installed now: `ai-text-loading`, `background-paths`.
+- Installed now: `ai-text-loading`, `background-paths`, `plucked-text`, `marker-text`, `split-flap-text`.
+- Full source of every component is also in `vendor/kokonutui/components/kokonutui/` (read-only; refresh with `npm run vendor:sync`).
